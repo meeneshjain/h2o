@@ -6,7 +6,9 @@ var logger = require('morgan');
 
 /*var indexRouter = require('./routes/index');*/
 /*var usersRouter = require('./routes/users');*/
-var apirouter1 = require('./routes/v1/api');
+var apirouter = require('./routes/v1/api');
+var apirouter1 = require('./routes/v1/customer');
+var apirouter2 = require('./routes/v1/product');
 // var apirouter2 = require('./routes/v2/api');
 
 var app = express();
@@ -23,12 +25,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /*app.use('/', indexRouter);*/
 /* app.use('/users', usersRouter);*/
-app.use('/v1/api', apirouter1);
+app.use('/v1/api', apirouter);
+app.use('/v1/customer', apirouter1);
+app.use('/v1/product', apirouter2);
 // app.use('/v2/api', apirouter2);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+	next(createError(404));
 });
 
 // error handler
